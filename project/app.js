@@ -1,18 +1,31 @@
 // This needs to be added in order to use file system
-const fileSystem = require("fs");
-const generatePage = require("./src/page-template");
+const inquirer = require('inquirer');
+inquirer.prompt([
+  {
 
-// this array holds the user command line arguments:
-const profileDataArgs = process.argv.slice(2);
-console.log(profileDataArgs);
+    type:'input',
+    name :'name',
+    message:'What is your name?'
 
-const [name, github] = profileDataArgs;
-console.log(name, github);
+  }
 
-const pageHTML = generatePage(name, github);
+])
+.then(answer => console.log(answer));
 
-fileSystem.writeFile("index.html", pageHTML, (err) => {
-  if (err) throw err;
 
-  console.log("portfolio complete ! Check out index.html to see the output!");
-});
+
+
+// console log inquirer to check if inquirer has been imported properly
+// console.log(inquirer);
+
+// const fileSystem = require("fs");
+// const generatePage = require("./src/page-template");
+
+
+// const pageHTML = generatePage(name, github);
+
+// fileSystem.writeFile("./index.html", pageHTML, (err) => {
+  // if (err) throw err;
+
+  // console.log("portfolio complete ! Check out index.html to see the output!");
+// });
