@@ -1,4 +1,6 @@
 // This needs to be added in order to use file system
+ const generatePage = require("./src/page-template");
+const fileSystem = require("fs");
 const inquirer = require('inquirer');
 
 const promptUser = () =>{
@@ -60,15 +62,17 @@ return inquirer.prompt([
 
 // Add function promptProject() for the project question
 const promptProject = portfolioData =>{
-   portfolioData.projects = [];
-  //  if there is no 'project' array property, create on
-if (!portfolioData.projects){
-  portfolioData.projects=[];
-}
+   
+
+
   console.log(`
   ================
   Add a New project
   `);
+  // if there is no 'projects' array property,create one
+  if (!portfolioData.projects){
+    portfolioData.projects = [];
+  }
   return inquirer.prompt([
     {
       type:'input',
