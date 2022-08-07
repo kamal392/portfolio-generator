@@ -1,6 +1,6 @@
 // This needs to be added in order to use file system
- const generatePage = require("./src/page-template");
 const fileSystem = require("fs");
+const generatePage = require("./src/page-template");
 const inquirer = require('inquirer');
 
 const promptUser = () =>{
@@ -142,23 +142,13 @@ promptUser()
 
 .then(promptProject)
 .then(portfolioData =>{
-  console.log(portfolioData);
+  const pageHTML = generatePage(portfolioData);
+  fileSystem.writeFile("./index.html", pageHTML, (err) => {
+   if (err) throw err;
+  console.log("portfolio complete ! Check out index.html to see the output!");
+   });
 });
 
 
 
 
-// console log inquirer to check if inquirer has been imported properly
-// console.log(inquirer);
-
-// const fileSystem = require("fs");
-// const generatePage = require("./src/page-template");
-
-
-// const pageHTML = generatePage(name, github);
-
-// fileSystem.writeFile("./index.html", pageHTML, (err) => {
-  // if (err) throw err;
-
-  // console.log("portfolio complete ! Check out index.html to see the output!");
-// });
